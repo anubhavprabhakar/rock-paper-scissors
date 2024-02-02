@@ -1,0 +1,8 @@
+.computer, .player, .winner{
+    height: 100px;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
