@@ -36,6 +36,4 @@ function game(){
     choice.addEventListener('click', playRound)
 }
 
-
-
 game()
