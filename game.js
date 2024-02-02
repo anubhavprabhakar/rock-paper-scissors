@@ -39,11 +39,6 @@ function game(){
         }
     }
     
-    for(let i=0; i<5; i++){
-        const playerSelection = prompt('Choose from rock paper or scissors:');
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
 }
 
 game()
