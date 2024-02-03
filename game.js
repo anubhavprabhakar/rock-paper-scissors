@@ -3,7 +3,7 @@ const wins = {'-2':'Player', '-1': 'Computer', '1':'Player', '2':'Computer'}
 
 const computersChoice = document.querySelector('.computersChoice')
 const playersChoice = document.querySelector('.playersChoice')
-const gameresult = document.querySelector('.gameresult')
+const roundresult = document.querySelector('.roundresult')
 
 function getComputerChoice(){
     let x = Math.floor((Math.random() * 3) + 1);
@@ -17,7 +17,29 @@ function getComputerChoice(){
 }
 
 function game(){
+    let rounds = 5
+    const score = {'Player': 0, 'Computer': 0}
+    
+    const runningScore = document.querySelector('.runningscore')
+    
     function playRound(event) {
+        console.log(rounds)
+        rounds--
+        if(!rounds){
+            const buttons = document.querySelectorAll('button')
+            buttons.forEach((button)=>{button.disabled = true})
+            choice.removeEventListener('click', playRound)
+            const finalResult = document.createElement('div')
+            if(score['Player']>score['Computer']){
+                finalResult.textContent = `Final Result: Player wins the game!`
+            }else if(score['Player']<score['Computer']){
+                finalResult.textContent = `Final Result: Computer wins the game!`
+            }else{
+                finalResult.textContent = `Final Result: Draw`
+            }
+            roundresult.parentElement.appendChild(finalResult)
+        }
+
         const playerSelection = event.target.id
         playersChoice.textContent = playerSelection
 
@@ -27,11 +49,15 @@ function game(){
         const result = (rps[playerSelection]-rps[computerSelection])
         
         if(result === 0){
-            gameresult.textContent = 'draw'
+            roundresult.textContent = 'Round Result: Draw'
         }else{
-            gameresult.textContent = `${wins[result]} wins!`
+            const winner = wins[result]
+            roundresult.textContent = `Round Result: ${winner} wins!`
+            score[winner]+=1
         }
+        runningScore.textContent = `Computer: ${score['Computer']} Player: ${score['Player']}`
     }
+
     const choice = document.querySelector('.choice')
     choice.addEventListener('click', playRound)
 }

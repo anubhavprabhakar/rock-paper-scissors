@@ -1,9 +1,21 @@
-.computer, .player, .winner{
-    height: 100px;
-    width: 200px;
+.computer, .player, .winner, .score{
+    height: 60px;
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
 }
 
+.choice{
+    height: 50px;
+}
+.score{
+    width: auto;
+    display: block;
+}
+
+.winner {
+    display: block;
+    padding: 0 30px;
+}
