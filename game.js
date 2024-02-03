@@ -16,11 +16,16 @@ function getComputerChoice(){
     }
 }
 
+const score = {'Player': 0, 'Computer': 0}
+const runningScore = document.querySelector('.runningscore')
+
+function updateRunningScore(){
+    runningScore.textContent = `Computer: ${score['Computer']} Player: ${score['Player']}`
+}
+
 function game(){
-    let rounds = 5
-    const score = {'Player': 0, 'Computer': 0}
-    
-    const runningScore = document.querySelector('.runningscore')
+    let rounds = 5    
+    updateRunningScore()
     
     function playRound(event) {
         console.log(rounds)
@@ -55,9 +60,8 @@ function game(){
             roundresult.textContent = `Round Result: ${winner} wins!`
             score[winner]+=1
         }
-        runningScore.textContent = `Computer: ${score['Computer']} Player: ${score['Player']}`
+        updateRunningScore()
     }
-
     const choice = document.querySelector('.choice')
     choice.addEventListener('click', playRound)
 }
