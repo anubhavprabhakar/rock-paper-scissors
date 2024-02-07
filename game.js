@@ -30,20 +30,6 @@ function game(){
     function playRound(event) {
         console.log(rounds)
         rounds--
-        if(!rounds){
-            const buttons = document.querySelectorAll('button')
-            buttons.forEach((button)=>{button.disabled = true})
-            choice.removeEventListener('click', playRound)
-            const finalResult = document.createElement('div')
-            if(score['Player']>score['Computer']){
-                finalResult.textContent = `Final Result: Player wins the game!`
-            }else if(score['Player']<score['Computer']){
-                finalResult.textContent = `Final Result: Computer wins the game!`
-            }else{
-                finalResult.textContent = `Final Result: Draw`
-            }
-            roundresult.parentElement.appendChild(finalResult)
-        }
 
         const playerSelection = event.target.id
         playersChoice.textContent = playerSelection
@@ -60,6 +46,22 @@ function game(){
             roundresult.textContent = `Round Result: ${winner} wins!`
             score[winner]+=1
         }
+
+        if(!rounds){
+            const buttons = document.querySelectorAll('button')
+            buttons.forEach((button)=>{button.disabled = true})
+            choice.removeEventListener('click', playRound)
+            const finalResult = document.createElement('div')
+            if(score['Player']>score['Computer']){
+                finalResult.textContent = `Final Result: Player wins the game!`
+            }else if(score['Player']<score['Computer']){
+                finalResult.textContent = `Final Result: Computer wins the game!`
+            }else{
+                finalResult.textContent = `Final Result: Draw`
+            }
+            roundresult.parentElement.appendChild(finalResult)
+        }
+        
         updateRunningScore()
     }
     const choice = document.querySelector('.choice')
